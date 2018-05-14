@@ -46,7 +46,7 @@ function promptCustomerForItem(inventory) {
       {
         type: "input",
         name: "choice",
-        message: "What is the ID of the item you would you like to purchase? [Quit with Q]",
+        message: "What is the ID of the item you would you like to purchase? ",
         validate: function(val) {
           return !isNaN(val) || val.toLowerCase() === "q";
         }

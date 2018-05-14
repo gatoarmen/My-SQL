@@ -26,9 +26,6 @@ var connection = mysql.createConnection({
    
   });
 
-  var item = ''
-
-  var quantity = ''
   // List of all products that are in the database
 
   function start() {
@@ -36,9 +33,9 @@ var connection = mysql.createConnection({
         if (err) throw err;
 
     inquirer
-      .prompt({
+      .prompt([{
         name: "choice",
-        type: "rawlist",
+        type: "list",
         message: "Select an item to start your order",
         choices: function () {
             var choiceArray = [];
@@ -49,19 +46,9 @@ var connection = mysql.createConnection({
              return choiceArray; 
           }
           
-      }) 
+      }]).then(function(answer) { 
 
-      .then(function(answer) { 
-
-        var chosenItem;
-        for (var i = 0; i < res.length; i++) {
-          if (results[i].item_name === answer.choice) {
-            chosenItem = res[i];
-            console.log(chosenItem)
-   
-          }
-        }
-
+   cantidad();
      
     });  
      
@@ -69,11 +56,10 @@ var connection = mysql.createConnection({
    
 };
 
-// function to enter the quantity that the customer wants to purchase
-
-function quantity(){
+// function to enter the quantity that the customer wants to purchas
+  function cantidad(){
     inquirer
-    .prompt({
+    .prompt([{
         name: "quantity",
         type: "input",
         message: "How many would you like to order?",
@@ -84,12 +70,15 @@ function quantity(){
             return false;
           }
           
-    })
-}
-// gives 
+    }]).then(function(answer) { 
 
-  
-  
+      console.log("Your total is $900")
+
+     console.log("Thank You for Your Purchase")
+        
+       });  
+
+  }
 
   
 
